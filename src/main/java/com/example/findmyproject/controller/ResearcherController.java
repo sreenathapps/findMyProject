@@ -1,5 +1,6 @@
 package com.example.findmyproject.controller;
 
+import com.example.findmyproject.model.Project;
 import com.example.findmyproject.model.Researcher;
 import com.example.findmyproject.service.ResearcherJpaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,9 @@ public class ResearcherController {
     @DeleteMapping("/researchers/{id}")
     public void deleteResearcher(@PathVariable int id) {
         researcherJpaService.deleteResearcher(id);
+    }
+    @GetMapping("/researchers/{researcherId}/projects")
+    public List<Project> getResearcherProjects(@PathVariable int researcherId) {
+        return researcherJpaService.getResearcherProjects(researcherId);
     }
 }

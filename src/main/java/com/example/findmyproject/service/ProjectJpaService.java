@@ -41,6 +41,6 @@ public class ProjectJpaService implements ProjectRepository {
 
     @Override
     public List<Researcher> getProjectResearchers(int projectId) {
-        return List.of();
+        return null;
     }
 }
