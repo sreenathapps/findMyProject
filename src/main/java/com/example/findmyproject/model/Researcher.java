@@ -1,10 +1,5 @@
 package com.example.findmyproject.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -14,10 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "researcher")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+
 public class Researcher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,5 +23,47 @@ public class Researcher {
     @ManyToMany(mappedBy = "researchers")
     @JsonIgnoreProperties("researchers")
     List<Project> projects = new ArrayList<>();
+
+    public Researcher() {
+    }
+
+    public Researcher(int researcherId, String researcherName, String specialization, List<Project> projects) {
+        this.researcherId = researcherId;
+        this.researcherName = researcherName;
+        this.specialization = specialization;
+        this.projects = projects;
+    }
+
+    public int getResearcherId() {
+        return researcherId;
+    }
+
+    public void setResearcherId(int researcherId) {
+        this.researcherId = researcherId;
+    }
+
+    public String getResearcherName() {
+        return researcherName;
+    }
+
+    public void setResearcherName(String researcherName) {
+        this.researcherName = researcherName;
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
 
 }
