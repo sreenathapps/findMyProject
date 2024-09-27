@@ -19,9 +19,9 @@ import java.util.List;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int projectId;
     @Column(name = "name")
-    private String name;
+    private String projectName;
     @Column(name = "budget")
     private double budget;
 

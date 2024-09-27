@@ -4,6 +4,7 @@ import com.example.findmyproject.model.Project;
 import com.example.findmyproject.model.Researcher;
 import com.example.findmyproject.service.ProjectJpaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public class ProjectController {
         return projectJpaService.updateProject(projectId, project);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("researchers/projects/{projectId}")
     public void deleteProject(@PathVariable int projectId) {
         projectJpaService.deleteProject(projectId);
