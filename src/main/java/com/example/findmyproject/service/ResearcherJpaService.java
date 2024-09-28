@@ -55,18 +55,18 @@ public class ResearcherJpaService implements ResearcherRepository {
     @Override
     public Researcher updateResearcher(int researcherId, Researcher researcher) {
         try {
-            Researcher newResearcer = researcherJpaRepository.findById(researcherId).get();
+            Researcher newResearcher = researcherJpaRepository.findById(researcherId).get();
 
             if (researcher.getResearcherName() != null) {
-                newResearcer.setResearcherName(researcher.getResearcherName());
+                newResearcher.setResearcherName(researcher.getResearcherName());
             }
             if (researcher.getSpecialization() != null) {
-                newResearcer.setSpecialization(researcher.getSpecialization());
+                newResearcher.setSpecialization(researcher.getSpecialization());
             }
             if (researcher.getProjects()!= null) {
-                List<Project> projects = newResearcer.getProjects();
+                List<Project> projects = newResearcher.getProjects();
                 for(Project prj: projects) {
-                    prj.getResearchers().remove(newResearcer);
+                    prj.getResearchers().remove(newResearcher);
                 }
                 projectJpaRepository.saveAll(projects);
 
@@ -80,12 +80,13 @@ public class ResearcherJpaService implements ResearcherRepository {
                     throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
                 }
                 for (Project proj : newProjects) {
-                    proj.getResearchers().add(newResearcer);
+                    proj.getResearchers().add(newResearcher);
                 }
-                newResearcer.setProjects(newProjects);
+                projectJpaRepository.saveAll(newProjects);
 
+                newResearcher.setProjects(newProjects);
             }
-            return researcherJpaRepository.save(newResearcer);
+            return researcherJpaRepository.save(newResearcher);
 
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);

@@ -74,7 +74,7 @@ public class ProjectJpaService implements ProjectRepository {
             }
             newProject.setResearchers(newResearchers);
         }
-        return projectJpaRepository.save(project);
+        return projectJpaRepository.save(newProject);
 
     }
 

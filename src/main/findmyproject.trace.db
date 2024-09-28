@@ -143,3 +143,22 @@ DROP TABLE IF EXISTS PROJECT [90107-214]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
 	at com.example.findmyproject.FindMyProjectApplication.main(FindMyProjectApplication.java:10)
+2024-09-28 10:55:53 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE [*]TABLE RESEARCHER_PRODUCT SET RESEARCHERID = 1 WHERE PROJECTID ==1 AND RESEARCHERID == 2"; expected "identifier"; SQL statement:
+UPDATE TABLE RESEARCHER_PRODUCT SET RESEARCHERID = 1 WHERE PROJECTID ==1 AND RESEARCHERID == 2 [42001-214]
+2024-09-28 10:56:21 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE [*]TABLE RESEARCHER_PROJECT SET RESEARCHERID = 1 WHERE PROJECTID ==1 AND RESEARCHERID == 2"; expected "identifier"; SQL statement:
+UPDATE TABLE RESEARCHER_PROJECT SET RESEARCHERID = 1 WHERE PROJECTID ==1 AND RESEARCHERID == 2 [42001-214]
+2024-09-28 10:57:00 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE [*]TABLE RESEARCHER_PROJECT  SET RESEARCHERID = 1 WHERE PROJECTID =1 AND RESEARCHERID = 2"; expected "identifier"; SQL statement:
+UPDATE TABLE RESEARCHER_PROJECT  SET RESEARCHERID = 1 WHERE PROJECTID =1 AND RESEARCHERID = 2 [42001-214]
+2024-09-28 10:57:41 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]Syntax error in SQL statement ""UPDATE [*]TABLE RESEARCHER_PROJECT  SET RESEARCHERID = 1 WHERE PROJECTID =1 AND RESEARCHERID = 2"""; expected "SAVEPOINT, SCRIPT, SHUTDOWN, SHOW"; SQL statement:
+Syntax error in SQL statement "UPDATE [*]TABLE RESEARCHER_PROJECT  SET RESEARCHERID = 1 WHERE PROJECTID =1 AND RESEARCHERID = 2" [42001-214]
+2024-09-28 10:57:41 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]expected ""identifier"""; expected "EXPLAIN, EXECUTE"; SQL statement:
+expected "identifier" [42001-214]
+2024-09-28 10:57:41 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]SQL statement:\000d\000aUPDATE TABLE RESEARCHER_PROJECT  SET RESEARCHERID = 1 WHERE PROJECTID =1 AND RESEARCHERID = 2 [42001-214] 42001/42001 (Help)"; expected "SAVEPOINT, SCRIPT, SHUTDOWN, SHOW"; SQL statement:
+SQL statement:
+UPDATE TABLE RESEARCHER_PROJECT  SET RESEARCHERID = 1 WHERE PROJECTID =1 AND RESEARCHERID = 2 [42001-214] 42001/42001 (Help) [42001-214]
