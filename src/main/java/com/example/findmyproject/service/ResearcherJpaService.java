@@ -108,7 +108,7 @@ public class ResearcherJpaService implements ResearcherRepository {
             researcherJpaRepository.deleteById(id);
             
         } catch (Exception e) {
-            new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         throw new ResponseStatusException(HttpStatus.NO_CONTENT);
     }
