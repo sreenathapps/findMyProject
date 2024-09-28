@@ -54,43 +54,38 @@ public class ResearcherJpaService implements ResearcherRepository {
 
     @Override
     public Researcher updateResearcher(int researcherId, Researcher researcher) {
-        try {
-            Researcher newResearcher = researcherJpaRepository.findById(researcherId).get();
-
-            if (researcher.getResearcherName() != null) {
-                newResearcher.setResearcherName(researcher.getResearcherName());
-            }
-            if (researcher.getSpecialization() != null) {
-                newResearcher.setSpecialization(researcher.getSpecialization());
-            }
-            if (researcher.getProjects()!= null) {
-                List<Project> projects = newResearcher.getProjects();
-                for(Project prj: projects) {
-                    prj.getResearchers().remove(newResearcher);
-                }
-                projectJpaRepository.saveAll(projects);
-
-                List<Integer> projectIds = new ArrayList<>();
-                for(Project proj: researcher.getProjects()) {
-                    projectIds.add(proj.getProjectId());
-                }
-                
-                List<Project> newProjects = projectJpaRepository.findAllById(projectIds);
-                if (projects.size() != projectIds.size()) {
-                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-                }
-                for (Project proj : newProjects) {
-                    proj.getResearchers().add(newResearcher);
-                }
-                projectJpaRepository.saveAll(newProjects);
-
-                newResearcher.setProjects(newProjects);
-            }
-            return researcherJpaRepository.save(newResearcher);
-
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        Researcher newResearcher = researcherJpaRepository.findById(researcherId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+        );
+        if (researcher.getResearcherName() != null) {
+            newResearcher.setResearcherName(researcher.getResearcherName());
         }
+        if (researcher.getSpecialization() != null) {
+            newResearcher.setSpecialization(researcher.getSpecialization());
+        }
+            researcherJpaRepository.save(newResearcher);
+        if (researcher.getProjects() != null) {
+            List<Project> projects = newResearcher.getProjects();
+            for (Project prj: projects) {
+                prj.getResearchers().remove(newResearcher);
+            }
+            projectJpaRepository.saveAll(projects);
+
+            List<Integer> projIds = new ArrayList<>();
+            for(Project p : researcher.getProjects()) {
+                projIds.add(p.getProjectId());
+            }
+
+            List<Project> newProjs = projectJpaRepository.findAllById(projIds);
+            if (projIds.size() != newProjs.size()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+
+            for (Project prj: newProjs) {
+                prj.getResearchers().add(newResearcher);
+            }
+            projectJpaRepository.saveAll(newProjs);
+            newResearcher.setProjects(newProjs);
+        }
+        return  researcherJpaRepository.save(newResearcher);
     }
 
     @Override
