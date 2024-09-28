@@ -26,7 +26,7 @@ public class ResearcherController {
         return researcherJpaService.getResearcher(researcherId);
     }
     @PutMapping("/researchers/{researchersId}")
-    public Researcher updateResearcher(@RequestBody Researcher researcher, @PathVariable int researcherId) {
+    public Researcher updateResearcher(@PathVariable("researchersId") int researcherId, @RequestBody Researcher researcher) {
         return researcherJpaService.updateResearcher(researcherId, researcher);
     }
     @DeleteMapping("/researchers/{id}")

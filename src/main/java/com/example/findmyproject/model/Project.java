@@ -10,6 +10,7 @@ import java.util.List;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int projectId;
     @Column(name = "name")
     private String projectName;
@@ -18,7 +19,7 @@ public class Project {
 
     @ManyToMany
     @JoinTable(
-            name = "project_researcher",
+            name = "researcher_project",
             joinColumns = @JoinColumn(name = "projectid"),
             inverseJoinColumns = @JoinColumn(name = "researcherid")
     )
